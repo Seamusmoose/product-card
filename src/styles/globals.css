@@ -1,19 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Montserrat:wght@500;700&display=swap");
 
 :root {
   --clr-primary-400: hsl(158, 36%, 37%);
+  --clr-primary-500: hsl(158, 36%, 20%);
   --clr-secondary-200: hsl(30, 38%, 92%);
 
   --clr-neutral-900: hsl(212, 21%, 14%);
   --clr-neutral-400: hsl(228, 12%, 48%);
   --clr-neutral-100: hsl(0, 0%, 100%);
 
+  --ff-accent: "Fraunces", serif;
+  --ff-base: "Montserrat", sans-serif;
+
   --fw-regular: 500;
   --fw-bold: 700;
-
-  --ff-accent: font-family: 'Fraunces', serif;
-  --ff-base: font-family: 'Montserrat', sans-serif;
-
 }
 
 /*
@@ -43,7 +43,7 @@ body {
     5. Improve text rendering
   */
 body {
-  line-height: 1.5;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
 /*
@@ -78,6 +78,12 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
+h1,
+h2,
+h3 {
+  line-height: 1.1;
+}
 /*
     9. Create a root stacking context
   */
@@ -85,102 +91,117 @@ h6 {
 #__next {
   isolation: isolate;
 }
+/* reset */
+/* ------------------- */
 
-.flex {
+body {
+  font-family: var(--ff-base);
+  font-weight: var(--fw-regular);
+  color: var(--clr-neutral-400);
+  font-size: 0.875rem;
+  background-color: var(--clr-secondary-200);
+
+  display: grid;
+  place-content: center;
+  margin: 1rem;
+}
+
+.flex-group {
   display: flex;
-}
-
-.col {
-  flex-direction: column;
-}
-
-.center {
-  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   align-items: center;
 }
 
-.start {
-  justify-content: flex-start;
-  width: 100%;
-}
-
-.base {
-  background-color: bisque;
-  height: 100vh;
-}
-
 .product {
-  background-color: #ffffff;
-  width: 600px;
-  height: 450px;
+  position: "relative";
+  --content-padding: 2rem;
+  --content-spacing: 1rem;
+  display: grid;
+  background-color: var(--clr-neutral-100);
+  border-radius: 0.5rem;
+  overflow: hidden;
 }
 
-h2 {
-  color: #6c7289;
-  font-weight: 500;
-  font-family: "Montserrat", sans-serif;
-  font-size: 12px;
-  line-height: 14.63px;
-  letter-spacing: 5px;
+@media (min-width: 600px) {
+  .product {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
-p {
-  color: #6c7289;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 23px;
+.product__content {
+  display: grid;
+  padding: var(--content-padding);
+  gap: var(--content-spacing);
 }
 
-h1 {
-  color: #1c232b;
-  font-family: "Fraunces";
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 32px;
+.product__category {
+  font-size: 0.8125rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
 }
 
-h3 {
-  color: #3d8168;
-  font-family: "Fraunces";
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 32px;
+.product__title {
+  font-size: 2rem;
+  font-family: var(--ff-accent);
+  color: var(--clr-neutral-900);
 }
 
-h4 {
-  color: #6c7289;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 23px;
-  text-decoration: line-through;
-}
-
-.gap {
-  gap: 19px;
+.product__price {
+  font-size: 2rem;
+  font-family: var(--ff-accent);
+  color: var(--clr-primary-400);
 }
 
 .button {
-  background-color: #3d8168;
-  color: #ffffff;
-  border: none;
-  width: 236px;
-  height: 48px;
-  border-radius: 8px;
+  border: 0;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.75em 1.5em;
+  display: inline-flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--clr-primary-400);
+  color: var(--clr-neutral-100);
+  font-weight: var(--fw-bold);
+  font-size: 0.925rem;
 }
 
-.cart {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 17.07px;
+.button[data-icon="shopping-cart"]::before {
+  content: "";
+  background-image: url(../../public/icon-cart.svg);
+  width: 15px;
+  height: 16px;
 }
 
-.pad-32 {
-  padding: 32px;
+.button:is(:hover, :focus) {
+  background-color: var(--clr-primary-500);
 }
 
-.t {
-  border: 1px solid red;
+.img1 {
+  display: block;
+  object-fit: contain;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.img2 {
+  display: none;
+}
+
+@media (min-width: 600px) {
+  .img1 {
+    display: none;
+  }
+
+  .img2 {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    overflow: hidden;
+  }
 }

@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
+import MobileImage from "../../public/image-product-mobile.jpg";
 import DesktopImage from "../../public/image-product-desktop.jpg";
 
 export default function Home() {
@@ -11,23 +12,29 @@ export default function Home() {
 
         <meta name="Product-card" content="Product-card" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        
       </Head>
-      <main className="base flex center">
-        <article className="product flex">
-          <Image
-            className="product__img"
-            src={DesktopImage}
-            height={450}
-            width={300}
-            alt="Desktop image"
-          />
+      <main>
+        <div className="product">
+          <div>
+            <Image
+              className="img1"
+              src={MobileImage}
+              height={400}
+              width={400}
+              alt="Desktop image"
+            />
+            <Image
+              className="img2"
+              src={DesktopImage}
+              height={300}
+              width={450}
+              alt="Desktop image"
+            />
+          </div>
 
-          <div className="product__content flex col center pad-32">
+          <div className="product__content">
             <div className="flex start">
-              <p className="product__category">
-                <h2>Perfume</h2>
-              </p>
+              <p className="product__category">Perfume</p>
             </div>
             <h1 className="product__title">
               Gabrielle Essence Eau De Parfum A floral
@@ -38,15 +45,17 @@ export default function Home() {
             </p>
             <div className="flex-group flex gap center">
               <p className="product__price">
-                <h3>$149.99</h3>
+                <span>$149.99</span>
               </p>
-              <p className="product__original-price">$169.99</p>
+              <p className="product__original-price">
+                <s>$169.99</s>
+              </p>
             </div>
-            <button className="button">
-              <span className="cart">Add to Cart</span>
+            <button className="button" data-icon="shopping-cart">
+              Add to Cart
             </button>
           </div>
-        </article>
+        </div>
       </main>
     </>
   );
